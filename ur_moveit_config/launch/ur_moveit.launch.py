@@ -252,7 +252,23 @@ def launch_setup(context, *args, **kwargs):
         output="screen",
     )
 
-    nodes_to_start = [move_group_node, rviz_node, servo_node]
+    # Gripper node
+    # robotiq_gripper_controller_spawner = Node(
+    #     package="controller_manager",
+    #     executable="spawner",
+    #     arguments=["robotiq_gripper_controller", "-c", "/controller_manager"],
+    # )
+
+    # robotiq_activation_controller_spawner = Node(
+    #     package="controller_manager",
+    #     executable="spawner",
+    #     arguments=["robotiq_activation_controller", "-c", "/controller_manager"],
+    # )
+
+    nodes_to_start = [move_group_node, rviz_node, servo_node,
+                        # robotiq_gripper_controller_spawner,
+                        # robotiq_activation_controller_spawner,
+                        ]
 
     return nodes_to_start
 

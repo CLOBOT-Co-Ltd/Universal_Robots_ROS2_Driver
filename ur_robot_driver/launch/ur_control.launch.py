@@ -293,6 +293,8 @@ def launch_setup(context, *args, **kwargs):
                     "force_torque_sensor_broadcaster",
                     "joint_state_broadcaster",
                     "speed_scaling_state_broadcaster",
+                    "robotiq_gripper_controller",
+                    # "robotiq_activation_controller",
                 ]
             },
         ],
@@ -335,6 +337,8 @@ def launch_setup(context, *args, **kwargs):
         "io_and_status_controller",
         "speed_scaling_state_broadcaster",
         "force_torque_sensor_broadcaster",
+        "robotiq_gripper_controller",
+        # "robotiq_activation_controller",
     ]
     controllers_inactive = ["forward_position_controller"]
 
@@ -519,6 +523,20 @@ def generate_launch_description():
         )
     )
     declared_arguments.append(
+        DeclareLaunchArgument(
+            "robotiq_gripper_controller",
+            default_value="true",
+            description="Activate loaded robotiq_gripper_controller.",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "robotiq_activation_controller",
+            default_value="false",
+            description="Activate loaded robotiq_activation_controller.",
+        )
+    )
+    declared_arguments.append(
         DeclareLaunchArgument("launch_rviz", default_value="true", description="Launch RViz?")
     )
     declared_arguments.append(
@@ -585,7 +603,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "tool_tcp_port",
-            default_value="54321",
+            default_value="63352",
             description="Remote port that will be used for bridging the tool's serial device. "
             "Only effective, if use_tool_communication is set to True.",
         )
